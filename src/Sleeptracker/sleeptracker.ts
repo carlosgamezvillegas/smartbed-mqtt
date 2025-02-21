@@ -111,7 +111,7 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
 
   const refreshDeviceData = async () => {
     for (const bed of Object.values(beds)) {
-      logInfo('[Sleeptracker] Fetching data for bed', bed.processorId);
+      logInfo('[Sleeptracker] Fetching data for bed', bed);
       const { smartBedControls, environmentSensors, motors } = bed.supportedFeatures;
       if (smartBedControls) {
         const snapshots = await sendAdjustableBaseCommand(Commands.Status, bed.primaryUser);
