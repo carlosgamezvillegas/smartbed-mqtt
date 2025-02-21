@@ -60,7 +60,7 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
           supportedFeatures: {
             smartBedControls: isSmartBed,
             antiSnorePreset: antiSnorePresetSupported,
-            environmentSensors: helloData.productFeatures.includes('env_sensors'),
+            environmentSensors: helloData.productFeatures.includes('api_flan_config_all'),
             motors: helloData.productFeatures.includes('motors'),
           },
           data: { headAngleTicksPerDegree, footAngleTicksPerDegree },
