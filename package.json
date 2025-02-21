@@ -1,7 +1,7 @@
 {
   "name": "smartbed-mqttV2",
   "version": "1.1.22",
-  "description": "Smartbed MQTT integration",
+  "description": "Smartbed MQTT V2 integration",
   "author": "Richard Hopton",
   "repository": "git@github.com:carlosgamezvillegas/smartbed-mqttV2.git",
   "license": "MIT",
