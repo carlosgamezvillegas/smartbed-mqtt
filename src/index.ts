@@ -26,7 +26,7 @@ const processExit = (exitCode?: number) => {
 };
 
 process.on('exit', () => {
-  logWarn('Shutting down Smartbed-MQTT...');
+  logWarn('Shutting down smartbed-mqttV2...');
   processExit(0);
 });
 process.on('SIGINT', () => processExit(0));

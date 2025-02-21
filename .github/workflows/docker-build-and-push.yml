@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: richardhopton/smartbed-mqtt
+  IMAGE_NAME: carlosgamezvillegas/smartbed-mqttV2
 
 jobs:
   build-and-push-image:
