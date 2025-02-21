@@ -1,5 +1,12 @@
 {
-  "name": "Smartbed MQTT V2 Add-On",
+<<<<<<< HEAD
+  "name": "Smartbed MQTT Add-On",
   "url": "https://github.com/carlosgamezvillegas/smartbed-mqttV2",
   "maintainer": "carlosgamezvillegas"
 }
+=======
+  "name": "Smartbed MQTT Add-On",
+"url": "https://github.com/richardhopton/smartbed-mqtt",
+"maintainer": "richardhopton"
+}
+>>>>>>> parent of e7c7306 (Forking)

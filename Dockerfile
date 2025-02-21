@@ -2,15 +2,15 @@ FROM node:18-alpine
 
 RUN apk --no-cache add git
 
-COPY package.json /smartbed-mqttV2/
-COPY yarn.lock /smartbed-mqttV2/
-WORKDIR /smartbed-mqttV2
+COPY package.json /smartbed-mqtt/
+COPY yarn.lock /smartbed-mqtt/
+WORKDIR /smartbed-mqtt
 
 RUN yarn install
 
-COPY src /smartbed-mqttV2/src/
-COPY tsconfig.build.json /smartbed-mqttV2/
-COPY tsconfig.json /smartbed-mqttV2/
+COPY src /smartbed-mqtt/src/
+COPY tsconfig.build.json /smartbed-mqtt/
+COPY tsconfig.json /smartbed-mqtt/
 
 RUN yarn build:ci
 
@@ -29,14 +29,14 @@ RUN apk add --no-cache bash curl jq && \
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-WORKDIR /smartbed-mqttV2
-COPY run.sh /smartbed-mqttV2/
+WORKDIR /smartbed-mqtt
+COPY run.sh /smartbed-mqtt/
 RUN chmod a+x run.sh
 
-COPY --from=0 /smartbed-mqttV2/node_modules /smartbed-mqttV2/node_modules
-COPY --from=0 /smartbed-mqttV2/dist/tsc/ /smartbed-mqttV2/
+COPY --from=0 /smartbed-mqtt/node_modules /smartbed-mqtt/node_modules
+COPY --from=0 /smartbed-mqtt/dist/tsc/ /smartbed-mqtt/
 
-ENTRYPOINT [ "/smartbed-mqttV2/run.sh" ]
+ENTRYPOINT [ "/smartbed-mqtt/run.sh" ]
 #ENTRYPOINT [ "node", "index.js" ]
 LABEL \
     io.hass.name="Smartbed Integration via MQTT" \
