@@ -32,13 +32,8 @@ This project aims to enable remote control of adjustable smart beds from HomeAss
 
 - In HomeAssistant click Settings, Add-ons, and Add-on Store.
 - Click the 3 dot menu in the top right and select Repositories.
-<<<<<<< HEAD
-- Paste https://github.com/carlosgamezvillegas/smartbed-mqttV2, click Add, and Close
-- Select the Smartbed MQTT add-on from the list, and click Install.
-=======
 - Paste https://github.com/richardhopton/smartbed-mqtt, click Add, and Close
 - Select the Smartbed MQTT add-on from the list, and click Install.
->>>>>>> parent of e7c7306 (Forking)
 - Wait patiently for the build to finish.
 - Click on Configuration and set type followed by the necessary configuration as described below.
 - Click on Info and click Start.
