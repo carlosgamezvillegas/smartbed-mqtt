@@ -11,8 +11,8 @@ export class iaqSensor extends JsonEnvironmentSensor {
     return {
       ...super.discoveryState(),
       state_class: 'measurement',
-      unit_of_measurement: '',
-      device_class: 'power_factor',
+      unit_of_measurement: 'lx',
+      device_class: 'illuminance',
     };
   }
 }

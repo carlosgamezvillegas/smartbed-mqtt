@@ -39,7 +39,6 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
       let bed = beds[processorId];
 
       const helloData = await getHelloData(processorId, user);
-      logInfo('[Sleeptracker] Hello', helloData);
       if (!helloData) {
         logError('[Sleeptracker] Could not load helloData');
         continue;

@@ -34,6 +34,7 @@ interface EnvironmentSensorEntities {
   humidityPercentage?: Sensor<EnvironmentSensorData>;
   co2Ppm?: Sensor<EnvironmentSensorData>;
   vocPpb?: Sensor<EnvironmentSensorData>;
+  iaq?: Sensor<EnvironmentSensorData>;
 }
 
 export const processEnvironmentSensors = async (
