@@ -7,6 +7,7 @@ import { TemperatureSensor } from '../entities/EnvironmentSensors/TemperatureSen
 import { VOCSensor } from '../entities/EnvironmentSensors/VOCSensor';
 import { getEnvironmentSensorsData } from '../requests/getEnvironmentSensorsData';
 import { Bed } from '../types/Bed';
+import { logInfo } from '@utils/logger';
 import { EnvironmentSensorData, EnvironmentSensorType } from '../types/EnvironmentSensor';
 
 const buildSensorFromEnvironmentSensorType = (
@@ -39,6 +40,7 @@ export const processEnvironmentSensors = async (
 ) => {
   const cache = entities as EnvironmentSensorEntities;
   const environmentSensors = await getEnvironmentSensorsData(processorId, primaryUser);
+  logInfo('[Sleeptracker] sensor info:', environmentSensors);
   environmentSensors.forEach((environmentSensor) => {
     const { type } = environmentSensor;
     let sensor = cache[type];

@@ -1,4 +1,4 @@
-## v1.1.3
+## v1.1.31
 
 **New Features**
 
@@ -259,7 +259,7 @@
 - (Linak) Tweaks to Linak bed prototype
 - (Sleeptracker) Fixed VOC sensor class
 
-## v1.1.3
+## v1.1.31
 
 **New Features**
 
