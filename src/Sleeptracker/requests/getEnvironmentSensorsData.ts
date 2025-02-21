@@ -1,4 +1,4 @@
-import { logError } from '@utils/logger';
+import { logError, logInfo } from '@utils/logger';
 import axios from 'axios';
 import { Credentials } from '../options';
 import { EnvironmentSensorData, EnvironmentSensorType } from '../types/EnvironmentSensor';
@@ -49,6 +49,8 @@ export const getEnvironmentSensorsData = async (processorId: number, credentials
 
     const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb } = response.data;
     const results: EnvironmentSensorData[] = [];
+    logInfo('[Sleeptracker] Sensor Response', response);
+    logInfo('[Sleeptracker] Sensor Response Data', response.data);
     process('degreesCelsius', degreesCelsius, results);
     process('humidityPercentage', humidityPercentage, results);
     process('co2Ppm', co2Ppm, results);
