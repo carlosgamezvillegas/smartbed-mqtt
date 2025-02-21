@@ -3,11 +3,11 @@ import { Sensor } from '@ha/Sensor';
 import { IMQTTConnection } from '@mqtt/IMQTTConnection';
 import { CO2Sensor } from '../entities/EnvironmentSensors/CO2Sensor';
 import { HumiditySensor } from '../entities/EnvironmentSensors/HumiditySensor';
+import { iaqSensor } from '../entities/EnvironmentSensors/iaqSensor';
 import { TemperatureSensor } from '../entities/EnvironmentSensors/TemperatureSensor';
 import { VOCSensor } from '../entities/EnvironmentSensors/VOCSensor';
 import { getEnvironmentSensorsData } from '../requests/getEnvironmentSensorsData';
 import { Bed } from '../types/Bed';
-import { logInfo } from '@utils/logger';
 import { EnvironmentSensorData, EnvironmentSensorType } from '../types/EnvironmentSensor';
 
 const buildSensorFromEnvironmentSensorType = (
@@ -24,6 +24,8 @@ const buildSensorFromEnvironmentSensorType = (
       return new CO2Sensor(mqtt, deviceData);
     case 'vocPpb':
       return new VOCSensor(mqtt, deviceData);
+    case 'iaq':
+      return new iaqSensor(mqtt, deviceData);
   }
 };
 
@@ -40,7 +42,6 @@ export const processEnvironmentSensors = async (
 ) => {
   const cache = entities as EnvironmentSensorEntities;
   const environmentSensors = await getEnvironmentSensorsData(processorId, primaryUser);
-  logInfo('[Sleeptracker] sensor info:', environmentSensors);
   environmentSensors.forEach((environmentSensor) => {
     const { type } = environmentSensor;
     let sensor = cache[type];

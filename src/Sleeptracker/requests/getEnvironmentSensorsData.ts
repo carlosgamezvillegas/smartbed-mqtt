@@ -18,6 +18,7 @@ type Response = {
   humidityPercentage?: ResponseSensor;
   co2Ppm?: ResponseSensor;
   vocPpb?: ResponseSensor;
+  iaq?: ResponseSensor;
 };
 
 const process = (type: EnvironmentSensorType, sensor: ResponseSensor | undefined, results: EnvironmentSensorData[]) => {
@@ -47,14 +48,13 @@ export const getEnvironmentSensorsData = async (processorId: number, credentials
       },
     });
 
-    const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb } = response.data;
+    const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb, iaq } = response.data;
     const results: EnvironmentSensorData[] = [];
-    logInfo('[Sleeptracker] Sensor Response', response);
-    logInfo('[Sleeptracker] Sensor Response Data', response.data);
     process('degreesCelsius', degreesCelsius, results);
     process('humidityPercentage', humidityPercentage, results);
     process('co2Ppm', co2Ppm, results);
     process('vocPpb', vocPpb, results);
+    process('iaq', iaq, results);
     return results;
   } catch (err) {
     logError(err);
