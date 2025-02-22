@@ -3,7 +3,6 @@ import { Sensor } from '@ha/Sensor';
 import { IMQTTConnection } from '@mqtt/IMQTTConnection';
 import { CO2Sensor } from '../entities/EnvironmentSensors/CO2Sensor';
 import { HumiditySensor } from '../entities/EnvironmentSensors/HumiditySensor';
-import { IaqSensor } from '../entities/EnvironmentSensors/IaqSensor';
 import { TemperatureSensor } from '../entities/EnvironmentSensors/TemperatureSensor';
 import { VOCSensor } from '../entities/EnvironmentSensors/VOCSensor';
 import { getEnvironmentSensorsData } from '../requests/getEnvironmentSensorsData';
@@ -24,8 +23,6 @@ const buildSensorFromEnvironmentSensorType = (
       return new CO2Sensor(mqtt, deviceData);
     case 'vocPpb':
       return new VOCSensor(mqtt, deviceData);
-    case 'iaq':
-      return new IaqSensor(mqtt, deviceData);
   }
 };
 
@@ -34,7 +31,6 @@ interface EnvironmentSensorEntities {
   humidityPercentage?: Sensor<EnvironmentSensorData>;
   co2Ppm?: Sensor<EnvironmentSensorData>;
   vocPpb?: Sensor<EnvironmentSensorData>;
-  iaq?: Sensor<EnvironmentSensorData>;
 }
 
 export const processEnvironmentSensors = async (

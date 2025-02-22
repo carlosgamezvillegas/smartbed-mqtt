@@ -1,4 +1,4 @@
-import { logError } from '@utils/logger';
+import { logError, logInfo } from '@utils/logger';
 import axios from 'axios';
 import { Credentials } from '../options';
 import { EnvironmentSensorData, EnvironmentSensorType } from '../types/EnvironmentSensor';
@@ -18,7 +18,6 @@ type Response = {
   humidityPercentage?: ResponseSensor;
   co2Ppm?: ResponseSensor;
   vocPpb?: ResponseSensor;
-  iaq?: ResponseSensor;
 };
 
 const process = (type: EnvironmentSensorType, sensor: ResponseSensor | undefined, results: EnvironmentSensorData[]) => {
@@ -48,13 +47,13 @@ export const getEnvironmentSensorsData = async (processorId: number, credentials
       },
     });
 
-    const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb, iaq } = response.data;
+    const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb } = response.data;
+    logInfo('[Sleeptracker] Fetching Sensor Data for', response.data);
     const results: EnvironmentSensorData[] = [];
     process('degreesCelsius', degreesCelsius, results);
     process('humidityPercentage', humidityPercentage, results);
     process('co2Ppm', co2Ppm, results);
     process('vocPpb', vocPpb, results);
-    process('iaq', iaq, results);
     return results;
   } catch (err) {
     logError(err);
