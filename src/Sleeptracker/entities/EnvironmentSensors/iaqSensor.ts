@@ -11,8 +11,9 @@ export class IaqSensor extends JsonEnvironmentSensor {
     return {
       ...super.discoveryState(),
       state_class: 'measurement',
-      unit_of_measurement: 'lx',
-      device_class: 'illuminance',
+      unit_of_measurement: 'ppm',
+      device_class: 'carbon_dioxide',
+      icon: 'mdi:molecule-co2',
     };
   }
 }
