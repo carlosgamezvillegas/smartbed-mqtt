@@ -59,7 +59,7 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
           supportedFeatures: {
             smartBedControls: isSmartBed,
             antiSnorePreset: antiSnorePresetSupported,
-            environmentSensors: helloData.productFeatures.includes('api_flan_config_all'),
+            environmentSensors: helloData.productFeatures.includes('env_sensors'),
             motors: helloData.productFeatures.includes('motors'),
           },
           data: { headAngleTicksPerDegree, footAngleTicksPerDegree },
@@ -110,7 +110,7 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
 
   const refreshDeviceData = async () => {
     for (const bed of Object.values(beds)) {
-      logInfo('[Sleeptracker] Fetching data for bed', bed);
+      logInfo('[Sleeptracker] Fetching data for bed', bed.processorId);
       const { smartBedControls, environmentSensors, motors } = bed.supportedFeatures;
       if (smartBedControls) {
         const snapshots = await sendAdjustableBaseCommand(Commands.Status, bed.primaryUser);
@@ -133,6 +133,13 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
       if (environmentSensors) await processEnvironmentSensors(mqtt, bed);
     }
   };
+  const refresSensorData = async () => {
+    for (const bed of Object.values(beds)) {
+      logInfo('[Sleeptracker] Fetching Sensor Data for', bed.processorId);
+      await processEnvironmentSensors(mqtt, bed);
+    }
+  };
   await refreshDeviceData();
+  await refresSensorData();
   setInterval(refreshDeviceData, minutes(getRefreshFrequency()));
 };

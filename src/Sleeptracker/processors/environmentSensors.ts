@@ -3,7 +3,7 @@ import { Sensor } from '@ha/Sensor';
 import { IMQTTConnection } from '@mqtt/IMQTTConnection';
 import { CO2Sensor } from '../entities/EnvironmentSensors/CO2Sensor';
 import { HumiditySensor } from '../entities/EnvironmentSensors/HumiditySensor';
-import { iaqSensor } from '../entities/EnvironmentSensors/iaqSensor';
+import { IaqSensor } from '../entities/EnvironmentSensors/IaqSensor';
 import { TemperatureSensor } from '../entities/EnvironmentSensors/TemperatureSensor';
 import { VOCSensor } from '../entities/EnvironmentSensors/VOCSensor';
 import { getEnvironmentSensorsData } from '../requests/getEnvironmentSensorsData';
@@ -25,7 +25,7 @@ const buildSensorFromEnvironmentSensorType = (
     case 'vocPpb':
       return new VOCSensor(mqtt, deviceData);
     case 'iaq':
-      return new iaqSensor(mqtt, deviceData);
+      return new IaqSensor(mqtt, deviceData);
   }
 };
 

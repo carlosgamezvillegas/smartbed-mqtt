@@ -2,7 +2,7 @@ import { IDeviceData } from '@ha/IDeviceData';
 import { IMQTTConnection } from '@mqtt/IMQTTConnection';
 import { JsonEnvironmentSensor } from './JsonEnvironmentSensor';
 
-export class iaqSensor extends JsonEnvironmentSensor {
+export class IaqSensor extends JsonEnvironmentSensor {
   constructor(mqtt: IMQTTConnection, deviceData: IDeviceData) {
     super(mqtt, deviceData, { description: 'IAQ Sensor' });
   }

@@ -1,4 +1,4 @@
-import { logError, logInfo } from '@utils/logger';
+import { logError } from '@utils/logger';
 import axios from 'axios';
 import { Credentials } from '../options';
 import { EnvironmentSensorData, EnvironmentSensorType } from '../types/EnvironmentSensor';
