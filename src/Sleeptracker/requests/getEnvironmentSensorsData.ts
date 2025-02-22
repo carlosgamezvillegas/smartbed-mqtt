@@ -48,7 +48,6 @@ export const getEnvironmentSensorsData = async (processorId: number, credentials
     });
 
     const { degreesCelsius, humidityPercentage, co2Ppm, vocPpb } = response.data;
-    logInfo('[Sleeptracker] Fetching Sensor Data for', response.data);
     const results: EnvironmentSensorData[] = [];
     process('degreesCelsius', degreesCelsius, results);
     process('humidityPercentage', humidityPercentage, results);

@@ -141,5 +141,6 @@ export const sleeptracker = async (mqtt: IMQTTConnection) => {
   };
   await refreshDeviceData();
   await refresSensorData();
+  setInterval(refresSensorData, minutes(20));
   setInterval(refreshDeviceData, minutes(getRefreshFrequency()));
 };
